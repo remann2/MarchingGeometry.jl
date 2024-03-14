@@ -1,0 +1,13 @@
+name = "MarchingGeomtry"
+uuid = "001550f1-8c11-4b7e-942f-8a52a0f1beaa"
+authors = ["dap <dap@gitlab.icu> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
