@@ -1,7 +1,7 @@
 using MarchingGeometry
 using GLMakie
 
-g = Grid((0., 0.), (1., 1.), (100, 100))
+g = Grid((0., 0.), (1., 1.), (20, 20))
 plot(g)
 mg = marching_square(g, 0.5, x -> rand())
 plot(mg)
