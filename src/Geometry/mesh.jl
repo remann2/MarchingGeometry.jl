@@ -1,4 +1,4 @@
-function bound_nodes(model::Gridap.Geometry.Grid)
+function get_bound_nodes(model::Gridap.Geometry.Grid)
     B = BoundaryTriangulation(model)
     bs = get_cell_coordinates(B)
     collect(Set(Tuple.(c for cs in bs for c in cs)))
@@ -10,14 +10,14 @@ function read_msh(msh_file::String, f::Function)
     V = FESpace(model, reffe)
     uh = interpolate_everywhere(f, V)
     T = Triangulation(model)
-    bounds = bound_nodes(model)
+    bounds = get_bound_nodes(model)
     read_msh(T, bounds, uh)
 end
 
 function read_msh(msh_file::String, uh::CellField)
     model = GmshDiscreteModel(msh_file)
     T = Triangulation(model)
-    bounds = bound_nodes(model)
+    bounds = get_bound_nodes(model)
     read_msh(T, bounds, uh)
 end
 
@@ -34,8 +34,8 @@ end
 
 function read_msh(uh::CellField)
     trian = uh.trian
-    bound_nodes = bound_nodes(trian)
-    read_msh(trian, bound_nodes, uh)
+    bounds = get_bound_nodes(trian)
+    read_msh(trian, bounds, uh)
 end
 
 struct Triangle
