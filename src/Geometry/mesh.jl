@@ -32,6 +32,12 @@ function read_msh(trian::Gridap.Geometry.Grid, bound_nodes::Vector{NTuple{2, Flo
     return tri_mesh, nodevals
 end
 
+function read_msh(uh::CellField)
+    trian = uh.trian
+    bound_nodes = get_cell_coordinates(BoundaryTriangulation(uh.trian))
+    read_msh(trian, bound_nodes, uh)
+end
+
 struct Triangle
     p1::NTuple{2, Float64}
     p2::NTuple{2, Float64}
