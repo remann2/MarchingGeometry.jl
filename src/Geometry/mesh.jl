@@ -34,7 +34,7 @@ end
 
 function read_msh(uh::CellField)
     trian = uh.trian
-    bound_nodes = get_cell_coordinates(BoundaryTriangulation(uh.trian))
+    bound_nodes = bound_nodes(trian)
     read_msh(trian, bound_nodes, uh)
 end
 
