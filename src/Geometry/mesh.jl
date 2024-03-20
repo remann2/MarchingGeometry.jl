@@ -14,7 +14,7 @@ function read_msh(msh_file::String, f::Function)
     read_msh(T, bounds, uh)
 end
 
-function read_mesh(msh_file::String, uh::CellField)
+function read_msh(msh_file::String, uh::CellField)
     model = GmshDiscreteModel(msh_file)
     T = Triangulation(model)
     bounds = bound_nodes(model)
