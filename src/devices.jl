@@ -3,16 +3,16 @@ DPoint = Devices.Point
 import Devices.Polygon
 
 function to_gds(name::AbstractString, points::AbstractVector{<:DPoint})
+    c = Cell(basename(name))
     file = File{format"GDS"}("$name.gds")
     p = CellPolygon(Polygon(points), GDSMeta())
-    c = Cell(basename(name))
     push!(c.elements, p)
     save(file, c)
 end
 
 function to_gds(name::AbstractString, cell_polygons::AbstractVector{CellPolygon})
+    c = Cell(basename(name))
     file = File{format"GDS"}("$name.gds")
-    c = Cell("")
     append!(c.elements, cell_polygons)
     save(file, c)   
 end
